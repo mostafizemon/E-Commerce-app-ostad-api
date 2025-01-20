@@ -1,4 +1,5 @@
 import 'package:e_commerce_ostad_api/app/app_theme_data.dart';
+import 'package:e_commerce_ostad_api/features/auth/ui/screens/complete_profile_screen.dart';
 import 'package:e_commerce_ostad_api/features/auth/ui/screens/email_verification%20_screen.dart';
 import 'package:e_commerce_ostad_api/features/auth/ui/screens/otp_verification%20_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,10 @@ class CraftBay extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
-        EmailVerificationScreen.routename:(context)=>EmailVerificationScreen(),
-        OtpVerificationScreen.routename:(context)=>OtpVerificationScreen(),
+        EmailVerificationScreen.routename: (context) =>
+            EmailVerificationScreen(),
+        OtpVerificationScreen.routename: (context) => OtpVerificationScreen(),
+        CompleteProfileScreen.routename: (context) => CompleteProfileScreen(),
       },
     );
   }

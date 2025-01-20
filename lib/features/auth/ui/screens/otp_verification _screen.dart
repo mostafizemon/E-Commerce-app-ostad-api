@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:e_commerce_ostad_api/app/ap_constants.dart';
 import 'package:e_commerce_ostad_api/features/auth/ui/widgets/app_logo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../app/app_colors.dart';
+import 'complete_profile_screen.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
@@ -15,6 +20,36 @@ class OtpVerificationScreen extends StatefulWidget {
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController _otpTEController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  final RxInt _remainingTime = AppConstants.resendOtpTimePeriod.obs;
+  final RxBool _enableResentOtpButton = false.obs;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer(const Duration(seconds: 0), () {});
+    _startResentCodeTime();
+  }
+
+  late Timer timer;
+
+  void _startResentCodeTime() {
+    _enableResentOtpButton.value = false;
+    if (timer.isActive) {
+      timer.cancel();
+    }
+    _remainingTime.value = AppConstants.resendOtpTimePeriod;
+    timer = Timer.periodic(
+      Duration(seconds: 1),
+      (t) {
+        _remainingTime.value--;
+        if (_remainingTime.value == 0) {
+          t.cancel();
+          _enableResentOtpButton.value = true;
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,26 +105,39 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ElevatedButton(
                     onPressed: () {
                       // if (_formkey.currentState!.validate()) {}
+                      Navigator.pushNamed(context, CompleteProfileScreen.routename);
                     },
                     child: Text("Next"),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  RichText(
-                    text: TextSpan(
-                      text: "This code will be expire in ",
-                      style: TextStyle(color: Colors.grey),
-                      children: [
-                        TextSpan(
-                            text: '120s',
-                            style: TextStyle(color: AppColors.themeColor))
-                      ],
+                  Obx(
+                    () => Visibility(
+                      visible: !_enableResentOtpButton.value,
+                      child: RichText(
+                        text: TextSpan(
+                          text: "This code will be expire in ",
+                          style: TextStyle(color: Colors.grey),
+                          children: [
+                            TextSpan(
+                                text: "${_remainingTime.value}s",
+                                style: TextStyle(color: AppColors.themeColor))
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text('Recent Code'),
+                  Obx(
+                    () => Visibility(
+                      visible: _enableResentOtpButton.value,
+                      child: TextButton(
+                        onPressed: () {
+                          _startResentCodeTime();
+                        },
+                        child: Text('Recent Code'),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -98,5 +146,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    if (timer.isActive) {
+      timer.cancel();
+    }
+    super.dispose();
   }
 }
