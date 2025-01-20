@@ -9,8 +9,49 @@ class AppThemeData {
         color: AppColors.themeColor,
       ),
       scaffoldBackgroundColor: Colors.white,
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.white,
+      ),
+      textTheme: TextTheme(
+        titleLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(
+          color: Colors.grey,
+          fontWeight: FontWeight.w400,
+        ),
+        fillColor: Colors.white,
+        filled: true,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.themeColor, width: 1),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.themeColor, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.themeColor, width: 1),
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      ),
+
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.themeColor,
+          foregroundColor: Colors.white,
+          fixedSize: Size.fromWidth(double.maxFinite),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          textStyle: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+          ),
+          padding: EdgeInsets.symmetric(vertical: 12),
+        ),
+      )
     );
   }
+
 
 
   static ThemeData get darkThemeData {
@@ -23,5 +64,4 @@ class AppThemeData {
       brightness: Brightness.dark,
     );
   }
-
 }
