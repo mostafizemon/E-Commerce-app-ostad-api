@@ -1,4 +1,5 @@
 import 'package:e_commerce_ostad_api/features/auth/ui/screens/email_verification%20_screen.dart';
+import 'package:e_commerce_ostad_api/features/common/ui/screens/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/app_logo_widget.dart';
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(
       Duration(seconds: 2),
     );
-    Navigator.pushReplacementNamed(context, EmailVerificationScreen.routename);
+    Navigator.pushReplacementNamed(context, MainBottomNavScreen.routename);
   }
 
   @override
