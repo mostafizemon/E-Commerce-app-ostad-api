@@ -20,7 +20,7 @@ class HomeCarouselSlider extends StatelessWidget {
           options: CarouselOptions(
             height: 200.0,
             viewportFraction: 0.9,
-            autoPlay: true,
+            // autoPlay: true,
             onPageChanged: (index, reason) {
               sliderIndicatorController.onchangeindex(index);
             },

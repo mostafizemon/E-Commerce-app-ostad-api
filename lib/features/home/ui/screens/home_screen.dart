@@ -1,10 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_ostad_api/app/assets_path.dart';
 import 'package:e_commerce_ostad_api/features/home/ui/widgets/appbar_action_button.dart';
 import 'package:e_commerce_ostad_api/features/home/ui/widgets/home_carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import '../widgets/category_listview.dart';
+import '../widgets/home_section_header.dart';
+import '../widgets/item_list_view.dart';
 import '../widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,19 +27,39 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               ProductsSearchBar(
                 controller: searchTEController,
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              HomeCarouselSlider(),
+              HomeSectionHeader(
+                title: 'Category',
+                onTap: () {},
+              ),
+              CategoryListView(),
+              HomeSectionHeader(
+                title: 'Popular',
+                onTap: () {},
+              ),
+              ItemListView(),
+              HomeSectionHeader(
+                title: 'Special',
+                onTap: () {},
+              ),
+              ItemListView(),
+              HomeSectionHeader(
+                title: 'New',
+                onTap: () {},
+              ),
+              ItemListView(),
               SizedBox(
                 height: 16,
               ),
-
-              HomeCarouselSlider(),
-
-
             ],
           ),
         ),
@@ -46,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+//=>   ----      -----------------------------     ---    <=//
   AppBar buildAppBar() {
     return AppBar(
       title: SvgPicture.asset(AssetsPath.navbarappLogoSvg),
@@ -72,5 +94,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
