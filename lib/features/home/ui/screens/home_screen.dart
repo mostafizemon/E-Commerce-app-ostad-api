@@ -1,11 +1,13 @@
 import 'package:e_commerce_ostad_api/app/assets_path.dart';
+import 'package:e_commerce_ostad_api/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:e_commerce_ostad_api/features/home/ui/widgets/appbar_action_button.dart';
 import 'package:e_commerce_ostad_api/features/home/ui/widgets/home_carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../widgets/category_listview.dart';
+import 'package:get/get.dart';
+import '../../../common/ui/widgets/category_item_widget.dart';
+import '../../../common/ui/widgets/product_item_widget.dart';
 import '../widgets/home_section_header.dart';
-import '../widgets/item_list_view.dart';
 import '../widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,24 +41,81 @@ class _HomeScreenState extends State<HomeScreen> {
               HomeCarouselSlider(),
               HomeSectionHeader(
                 title: 'Category',
-                onTap: () {},
+                onTap: () {
+                  Get.find<MainBottomNavController>().moveToCategory();
+                },
               ),
-              CategoryListView(),
+              SizedBox(
+                height: 110,
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return CategoryItemWidget();
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: 16,
+                      );
+                    },
+                    itemCount: 10),
+              ),
               HomeSectionHeader(
                 title: 'Popular',
                 onTap: () {},
               ),
-              ItemListView(),
+              SizedBox(
+                height: 190,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return ProductItemWidget();
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 8,
+                    );
+                  },
+                  itemCount: 10,
+                ),
+              ),
               HomeSectionHeader(
                 title: 'Special',
                 onTap: () {},
               ),
-              ItemListView(),
+              SizedBox(
+                height: 190,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return ProductItemWidget();
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 8,
+                    );
+                  },
+                  itemCount: 10,
+                ),
+              ),
               HomeSectionHeader(
                 title: 'New',
                 onTap: () {},
               ),
-              ItemListView(),
+              SizedBox(
+                height: 190,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return ProductItemWidget();
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 8,
+                    );
+                  },
+                  itemCount: 10,
+                ),
+              ),
               SizedBox(
                 height: 16,
               ),

@@ -1,3 +1,4 @@
+import 'package:e_commerce_ostad_api/features/category/ui/screens/category_list_screen.dart';
 import 'package:e_commerce_ostad_api/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:e_commerce_ostad_api/features/home/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
 
   final List<Widget> _screens=[
     HomeScreen(),
-    HomeScreen(),
+    CategoryListScreen(),
     HomeScreen(),
     HomeScreen(),
   ];

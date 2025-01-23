@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../widgets/app_logo_widget.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String routname="/";
   const SplashScreen({super.key});
 
   @override
