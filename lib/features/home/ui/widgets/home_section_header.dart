@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   final String title;
@@ -20,9 +21,7 @@ class HomeSectionHeader extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         TextButton(
-          onPressed: () {
-            onTap;
-          },
+          onPressed: onTap,
           child: Text("View all"),
         ),
       ],

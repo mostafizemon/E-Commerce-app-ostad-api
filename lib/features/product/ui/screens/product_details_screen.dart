@@ -1,0 +1,145 @@
+import 'package:e_commerce_ostad_api/features/product/ui/widget/color_picker_widget.dart';
+import 'package:e_commerce_ostad_api/features/product/ui/widget/product_details_carousel_slider.dart';
+import 'package:e_commerce_ostad_api/features/product/ui/widget/quantity_inc_dec_button.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../app/app_colors.dart';
+
+class ProductDetailsScreen extends StatelessWidget {
+  static const String routename = "product/details";
+  final int productID;
+
+  const ProductDetailsScreen({super.key, required this.productID});
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.arrow_back),
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                ProductDetailsCarouselSlider(),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Happy New Year Speacial Deal 80% OFF!",
+                                  style: textTheme.titleMedium,
+                                ),
+                                Row(
+                                  children: [
+                                    Wrap(
+                                      children: [
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                          size: 18,
+                                        ),
+                                        Text(
+                                          "4.8",
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: Text("Reviews"),
+                                    ),
+                                    Container(
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.themeColor,
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                      child: Icon(
+                                        Icons.favorite_border,
+                                        size: 15,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          QuantityIncDecButton(
+                            onChange: (int) {},
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16,),
+                      Text("Color", style: textTheme.titleMedium,),
+                      SizedBox(height: 8,),
+                      ColorPickerWidget(colors: ["Red","Green", "Pink"],),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          buildPriceandAddtoCartSection(textTheme),
+        ],
+      ),
+    );
+  }
+
+  Container buildPriceandAddtoCartSection(TextTheme textTheme) {
+    return Container(
+          decoration: BoxDecoration(
+            color: AppColors.themeColor.withOpacity(0.15),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Text("Price",style: textTheme.titleSmall,),
+                    Text("\$100",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.themeColor,),),
+                  ],
+                ),
+                SizedBox(
+                  width: 120,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Add to Cart"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+  }
+}

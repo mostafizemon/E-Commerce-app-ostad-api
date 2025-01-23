@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomeCarouselSlider extends StatelessWidget {
-  const HomeCarouselSlider({
+class ProductDetailsCarouselSlider extends StatelessWidget {
+  const ProductDetailsCarouselSlider({
     super.key,
   });
 
@@ -14,15 +14,16 @@ class HomeCarouselSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final SliderIndicatorController sliderIndicatorController =
         Get.put(SliderIndicatorController());
-    return Column(
+    return Stack(
+      alignment: Alignment.center,
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 200.0,
-            viewportFraction: 0.9,
+            height: 300.0,
+            viewportFraction: 1,
             // autoPlay: true,
             onPageChanged: (index, reason) {
-              sliderIndicatorController.onchangeindex(index);
+              sliderIndicatorController.productDetailsonchangeindex(index);
             },
           ),
           items: [1, 2, 3, 4, 5].map(
@@ -31,14 +32,15 @@ class HomeCarouselSlider extends StatelessWidget {
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.themeColor,
+                      // borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text(
-                      'text $i',
-                      style: TextStyle(fontSize: 16.0),
+                    child: Center(
+                      child: Text(
+                        'text $i',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
                     ),
                   );
                 },
@@ -46,16 +48,17 @@ class HomeCarouselSlider extends StatelessWidget {
             },
           ).toList(),
         ),
-        SizedBox(
-          height: 8,
-        ),
-        Obx(
-          () => AnimatedSmoothIndicator(
-            activeIndex: sliderIndicatorController.currentIndex.value,
-            count: 5,
-            effect: WormEffect(
-                activeDotColor: AppColors.themeColor,
-                dotColor: Colors.grey.shade200),
+        Positioned(
+          bottom: 8,
+          child: Obx(
+            () => AnimatedSmoothIndicator(
+              activeIndex:
+                  sliderIndicatorController.prodcutDetailscurrentIndex.value,
+              count: 5,
+              effect: WormEffect(
+                  activeDotColor: AppColors.themeColor,
+                  dotColor: Colors.grey.shade300),
+            ),
           ),
         ),
       ],
