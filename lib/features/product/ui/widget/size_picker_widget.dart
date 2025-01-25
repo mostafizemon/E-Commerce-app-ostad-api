@@ -1,40 +1,40 @@
 import 'package:e_commerce_ostad_api/app/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ColorPickerWidget extends StatefulWidget {
-  const ColorPickerWidget({super.key, required this.colors, required this.onColorSelected});
+class SizePickerWidget extends StatefulWidget {
+  const SizePickerWidget({super.key, required this.sizes, required this.onSizeSelected});
 
-  final List<String> colors;
-  final Function(String) onColorSelected;
+  final List<String> sizes;
+  final Function(String) onSizeSelected;
   @override
-  State<ColorPickerWidget> createState() => _ColorPickerWidgetState();
+  State<SizePickerWidget> createState() => _SizePickerWidgetState();
 }
 
-class _ColorPickerWidgetState extends State<ColorPickerWidget> {
-  String? _selectedColor;
+class _SizePickerWidgetState extends State<SizePickerWidget> {
+  String? _selectedSize;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: getColorItems(),
+        children: getSizeItems(),
       ),
     );
   }
 
-  List<Widget> getColorItems() {
+  List<Widget> getSizeItems() {
     List<Widget> colorList = [];
-    for (String color in widget.colors) {
+    for (String size in widget.sizes) {
       colorList.add(
         getColorItemWidget(
-          name: color,
+          name: size,
           onTap: () {
-            _selectedColor = color;
-            widget.onColorSelected(_selectedColor!);
+            _selectedSize = size;
+            widget.onSizeSelected(_selectedSize!);
             setState(() {});
           },
-          isSelected: _selectedColor == color,
+          isSelected: _selectedSize == size,
         ),
       );
     }
