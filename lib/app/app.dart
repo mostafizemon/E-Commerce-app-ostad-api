@@ -7,6 +7,7 @@ import 'package:e_commerce_ostad_api/features/category/ui/screens/category_list_
 import 'package:e_commerce_ostad_api/features/common/ui/screens/main_bottom_nav_screen.dart';
 import 'package:e_commerce_ostad_api/features/product/ui/screens/product_details_screen.dart';
 import 'package:e_commerce_ostad_api/features/product/ui/screens/product_list_screen.dart';
+import 'package:e_commerce_ostad_api/features/wishlist/ui/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,6 +48,8 @@ class CraftBay extends StatelessWidget {
           widget = ProductDetailsScreen(
             productID: id,
           );
+        } else if (setting.name == WishListScreen.routename) {
+          widget = const WishListScreen();
         }
 
         return MaterialPageRoute(

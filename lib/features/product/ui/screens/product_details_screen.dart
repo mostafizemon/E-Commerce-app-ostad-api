@@ -1,6 +1,6 @@
 import 'package:e_commerce_ostad_api/features/product/ui/widget/color_picker_widget.dart';
 import 'package:e_commerce_ostad_api/features/product/ui/widget/product_details_carousel_slider.dart';
-import 'package:e_commerce_ostad_api/features/product/ui/widget/quantity_inc_dec_button.dart';
+import 'package:e_commerce_ostad_api/features/common/ui/widgets/quantity_inc_dec_button.dart';
 import 'package:e_commerce_ostad_api/features/product/ui/widget/size_picker_widget.dart';
 import 'package:flutter/material.dart';
 
